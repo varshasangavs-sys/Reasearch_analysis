@@ -1,0 +1,72 @@
+/*
+ * Global styles + design tokens.
+ *
+ * Why CSS variables (not just Tailwind tokens):
+ *   Dark mode + future palette experiments are a 5-line change against vars,
+ *   whereas changing tokens means recompiling Tailwind. CSS vars also let
+ *   us reference the same color from non-Tailwind contexts (e.g. a stray
+ *   <style> in a print stylesheet later).
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palette — "warm paper" research-desk aesthetic. */
+  --paper:        #faf6ef;
+  --ink:          #1a1a1a;
+  --ink-soft:     #4a4a4a;
+  --rule:         #d8d2c4;
+  --accent:       #8a2a2a;   /* deep archival red */
+  --accent-soft:  #c66a6a;
+  --bg-card:      #f3ede0;
+}
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings get the serif display face by default. */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* The accent ring used on the active timeline step & citation links. */
+.citation-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-soft);
+}
+.citation-link:hover {
+  border-bottom-style: solid;
+}
+
+/* Hairline horizontal rules in the editorial style. */
+hr.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+/* Selection — keep it on-brand. */
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* Smooth in-page scroll for citation anchors. */
+html { scroll-behavior: smooth; }
